@@ -34,11 +34,19 @@ export default function EmailCapture() {
       setErrorMessage('');
 
       try {
-         const response = await fetch('http://localhost:3000/api/subscribe', {
+         const response = await fetch('/api/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData),
+            body: JSON.stringify({
+               fullName: formData.fullName,
+               email: formData.email,
+            }),
          });
+         //  const response = await fetch('http://localhost:3000/api/subscribe', {
+         //     method: 'POST',
+         //     headers: { 'Content-Type': 'application/json' },
+         //     body: JSON.stringify(formData),
+         //  });
 
          const data = await response.json();
 
