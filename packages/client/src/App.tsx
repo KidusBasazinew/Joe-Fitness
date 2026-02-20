@@ -1,18 +1,9 @@
-import {
-   Play,
-   ArrowRight,
-   Zap,
-   Target,
-   Shield,
-   Trophy,
-   Users,
-   Flame,
-} from 'lucide-react';
+import { Play, ArrowRight, Shield, Trophy, Users, Flame } from 'lucide-react';
 // import GymClasses from "./components/GymClasses";
 
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import CTASection from './Components/CTASection';
+import EmailCapture from './components/EmailCapture';
 
 // import BlogSection from "./components/BlogSection";
 const features = [
@@ -337,7 +328,7 @@ const App = () => {
                </div>
             </div>
          </section>
-         <CTASection />
+         <EmailCapture />
       </main>
    );
 };

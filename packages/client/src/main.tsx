@@ -10,7 +10,6 @@ createRoot(document.getElementById('root')!).render(
    <StrictMode>
       <BrowserRouter>
          <Header />
-         {/* <Header /> */}
          <div className="pt-20">
             <Routes>
                <Route path="/" element={<App />} />
@@ -18,6 +17,5 @@ createRoot(document.getElementById('root')!).render(
             </Routes>
          </div>
       </BrowserRouter>
-      {/* <Toaster richColors /> */}
    </StrictMode>
 );
