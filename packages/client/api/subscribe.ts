@@ -36,7 +36,7 @@ export default async function handler(req: any, res: any) {
    }
 
    await resend.emails.send({
-      from: 'Joe Fitness <onboarding@resend.dev>',
+      from: 'Joe Fitness <joe@joefitness.live>',
       to: cleanEmail,
       subject: '🔥 Your 7-Day Fat Loss Blueprint Is Inside',
       html: `<h1>You're In ${fullName}!</h1>
