@@ -4,53 +4,48 @@ import { Play, ArrowRight, Shield, Trophy, Users, Flame } from 'lucide-react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import EmailCapture from './components/EmailCapture';
+import CTASection from './components/CTASection';
 
-// import BlogSection from "./components/BlogSection";
 const features = [
    {
       icon: Shield,
-      title: 'Premium Equipment',
+      title: 'Smart Meal Structure',
       description:
-         'State-of-the-art machines and free weights from industry leaders',
+         'Eat satisfying meals while staying in a calorie-smart zone — our system keeps you full and fat-burning all day.',
    },
    {
       icon: Trophy,
-      title: 'Proven Results',
+      title: 'Proven Fat Loss',
       description:
-         'Track record of transforming lives and achieving fitness goals',
+         'Follow the tried-and-tested Joe Fatloss method with daily guidance to get visible results quickly.',
    },
    {
       icon: Users,
-      title: 'Expert Community',
+      title: 'Motivation & Support',
       description:
-         'Certified trainers and supportive members pushing each other',
+         'Daily tips and reminders to keep you consistent, focused, and inspired throughout your journey.',
    },
    {
       icon: Flame,
-      title: 'Intense Training',
-      description: 'High-energy workouts designed to maximize your potential',
+      title: 'Effective Workouts',
+      description:
+         'Short, high-impact routines designed to burn fat, boost energy, and fit into your busy lifestyle.',
    },
 ];
 
 const heroData = [
    {
       image: '/hero_1_2_person_1.webp',
-      title: 'FORGE YOUR LIMITS',
+      title: 'LOSE FAT, FEEL FULL',
       description:
-         'Transform your body and mind with cutting-edge equipment, expert training, and an unmatched atmosphere of excellence.',
+         'Discover the Joe Fatloss system: easy-to-follow workouts, calorie-smart meals, and daily motivation to keep you on track. Start your free 7-day trial and see the difference.',
    },
    {
       image: '/hero_1_2_person_2.webp',
-      title: 'BUILD YOUR POWER',
+      title: 'YOUR DAILY FAT LOSS GUIDE',
       description:
-         'Achieve peak strength and endurance through intense workouts and dedicated support from our elite trainers.',
+         'From workouts to meals to mindset, get guided every day with our unique “securate” system that makes fat loss simple, sustainable, and satisfying.',
    },
-   // {
-   //   image: "/hero_1_2_person_3.webp",
-   //   title: "UNLEASH YOUR POTENTIAL",
-   //   description:
-   //     "Step into a world of discipline, transformation, and unstoppable motivation with 24/7 access.",
-   // },
 ];
 
 const textVariants: Variants = {
@@ -135,24 +130,26 @@ const App = () => {
                      </motion.div>
 
                      <motion.h1
-                        key={current.title}
                         custom={2}
                         variants={textVariants}
-                        className="text-5xl md:text-6xl font-black leading-tight"
+                        className="text-5xl md:text-6xl font-black leading-tight max-w-full"
                      >
-                        {current.title.split(' ').map((word, idx) => (
-                           <span
-                              key={idx}
-                              className={idx === 1 ? 'text-red-600' : ''}
-                           >
-                              {word}
-                              {idx === 0 ? ' ' : <br />}
-                           </span>
-                        ))}
+                        {(() => {
+                           const words = current.title.split(' ');
+                           const half = Math.ceil(words.length / 2);
+                           return (
+                              <>
+                                 {words.slice(0, half).join(' ')}{' '}
+                                 <span className="text-red-600">
+                                    {words.slice(half).join(' ')}
+                                 </span>
+                              </>
+                           );
+                        })()}
                      </motion.h1>
 
                      <motion.p
-                        key={current.description}
+                        // key={current.description}
                         custom={3}
                         variants={textVariants}
                         className="text-lg md:text-2xl text-gray-300 leading-relaxed max-w-lg"
@@ -181,9 +178,9 @@ const App = () => {
                         className="grid grid-cols-3 gap-8 pt-4"
                      >
                         {[
-                           { stat: '1000+', label: 'Members' },
-                           { stat: '24/7', label: 'Access' },
-                           { stat: '15+', label: 'Trainers' },
+                           { stat: '7+', label: 'Days Free Trial' },
+                           { stat: '1000+', label: 'Fat Loss Success Stories' },
+                           { stat: '5+', label: 'Minutes/day Workouts' },
                         ].map((item, i) => (
                            <div className="text-center" key={i}>
                               <h3 className="text-4xl font-black text-red-600 mb-2">
@@ -281,18 +278,20 @@ const App = () => {
                         className="text-5xl md:text-6xl font-black text-black mb-6 leading-tight"
                      >
                         WHERE{' '}
-                        <span className="block text-red-600">CHAMPIONS</span>{' '}
-                        ARE MADE
+                        <span className="block text-red-600">FAT MELTS</span>{' '}
+                        AND HABITS STICK
                      </motion.h2>
 
                      <motion.p
                         variants={fadeUp}
                         className="text-lg text-gray-600 mb-8 leading-relaxed"
                      >
-                        IronForge isn't just a gym – it's a crucible where
-                        ordinary people transform into extraordinary athletes.
-                        Our cutting-edge facility and world-class trainers
-                        create the perfect environment for your metamorphosis.
+                        Joe Fatloss isn’t just another fitness guide — it’s a
+                        complete digital system for transforming your body and
+                        mindset. Daily workouts, easy-to-follow meal plans, and
+                        motivational tips help you stay consistent while
+                        enjoying your meals. Learn the secret “securate”
+                        approach that makes fat loss effortless.
                      </motion.p>
 
                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
@@ -322,12 +321,13 @@ const App = () => {
                         variants={fadeUp}
                         className="bg-black text-white px-8 py-4 rounded-lg font-bold hover:bg-red-600 transition-all duration-300 transform hover:scale-105"
                      >
-                        DISCOVER MORE
+                        START MY 7-DAY FREE TRIAL
                      </motion.button>
                   </motion.div>
                </div>
             </div>
          </section>
+         <CTASection />
          <EmailCapture />
       </main>
    );

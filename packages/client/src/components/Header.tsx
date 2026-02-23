@@ -22,13 +22,7 @@ const Header = () => {
 
    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-   const navItems = [
-      { label: 'Home', href: '/' },
-      { label: 'Profile', href: '/profile' },
-      { label: 'Packages', href: '/packages' },
-      { label: 'Trainers', href: '/trainers' },
-      { label: 'Trainer', href: '/trainer' },
-   ];
+   const navItems = [{ label: 'Home', href: '/' }];
 
    return (
       <header
@@ -56,79 +50,7 @@ const Header = () => {
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
                      </a>
                   ))}
-                  {user?.role === 'admin' && (
-                     <a
-                        href="/dashboard"
-                        className="text-white font-medium transition-colors hover:text-red-600 relative group"
-                     >
-                        Dashboard(admin)
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
-                     </a>
-                  )}
-                  {user ? (
-                     <div className="relative mr-20">
-                        <details className="relative">
-                           <summary className="w-10 h-10 rounded-lg transition cursor-pointer flex items-center space-x-2">
-                              <span className="text-white">
-                                 {user.first_name}
-                              </span>
-                              {/* <div className="rounded-full"> */}
-                              <img
-                                 src={user.profile_image}
-                                 alt=""
-                                 className="rounded-full"
-                              />
-                              {/* </div> */}
-                           </summary>
-                           <div className="absolute right-0 top-full mt-2 w-72 bg-white rounded-lg shadow-lg border border-gray-200 z-50 p-5 text-base">
-                              <div className="border-b border-gray-200 pb-3 mb-3">
-                                 <p className="text-gray-600 mb-1">Email</p>
-                                 <p className="font-medium text-gray-900">
-                                    {user.email}
-                                 </p>
-                              </div>
-                              <div className="border-b border-gray-200 pb-3 mb-3">
-                                 <p className="text-gray-600 mb-1">Full Name</p>
-                                 <p className="font-medium text-gray-900">
-                                    {user.first_name} {user.last_name}
-                                 </p>
-                              </div>
-                              <div className="border-b border-gray-200 pb-3 mb-3">
-                                 <p className="text-gray-600 mb-1">Role</p>
-                                 <p className="font-medium text-gray-900">
-                                    {user.role}
-                                 </p>
-                              </div>
-                              <button
-                                 onClick={handleLogout}
-                                 className="w-full bg-red-600 text-white hover:bg-red-700 px-4 py-2.5 rounded-lg font-medium flex items-center justify-center space-x-2"
-                              >
-                                 <span className="material-symbols-outlined">
-                                    logout
-                                 </span>
-                                 <span>Logout</span>
-                              </button>
-                           </div>
-                        </details>
-                     </div>
-                  ) : (
-                     <>
-                        <a
-                           href="/login"
-                           className="text-white font-medium transition-colors hover:text-red-600 relative group"
-                        >
-                           Login
-                           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a
-                           href="/register"
-                           className="text-white font-medium transition-colors hover:text-red-600 relative group"
-                        >
-                           Register
-                           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                     </>
-                  )}
+
                   <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition-all duration-300 transform hover:scale-105">
                      JOIN NOW
                   </button>
@@ -137,6 +59,8 @@ const Header = () => {
                <button
                   className="md:hidden text-white"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  aria-expanded={isMenuOpen}
+                  aria-label="Toggle menu"
                >
                   {isMenuOpen ? (
                      <X className="h-6 w-6" />
