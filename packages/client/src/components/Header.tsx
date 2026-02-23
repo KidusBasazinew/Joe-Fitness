@@ -1,25 +1,18 @@
 import { useState } from 'react';
 import { Menu, X, Dumbbell } from 'lucide-react';
 
-import { useNavigate } from 'react-router';
-const user = {
-   first_name: 'John',
-   last_name: 'Doe',
-   email: 'John@gmail.com',
-   role: 'admin',
-   profile_image: 'https://randomuser.me/api/portraits',
-   logout: () => {
-      console.log('Log out');
-   },
-};
+// import { useNavigate } from 'react-router';
+// const user = {
+//    first_name: 'John',
+//    last_name: 'Doe',
+//    email: 'John@gmail.com',
+//    role: 'admin',
+//    profile_image: 'https://randomuser.me/api/portraits',
+//    logout: () => {
+//       console.log('Log out');
+//    },
+// };
 const Header = () => {
-   const navigate = useNavigate();
-   //   const { user, logout } = useAuth();
-   const handleLogout = async () => {
-      await user.logout();
-      navigate('/login');
-   };
-
    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
    const navItems = [{ label: 'Home', href: '/' }];
