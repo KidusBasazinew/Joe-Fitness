@@ -1,11 +1,9 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import { createClient } from '@supabase/supabase-js';
-
-const resend = new Resend(process.env.VITE_RESEND_API_KEY);
 
 const supabase = createClient(
    process.env.VITE_SUPABASE_URL!,
-   process.env.VITE_SUPABASE_ANON_KEY! // important
+   process.env.VITE_SUPABASE_ANON_KEY!
 );
 
 export default async function handler(req: any, res: any) {
@@ -21,7 +19,7 @@ export default async function handler(req: any, res: any) {
 
    const cleanEmail = email.toLowerCase().trim();
 
-   // Check if user exists
+   // Store in Supabase
    const { data: existingUser } = await supabase
       .from('users')
       .select('*')
@@ -35,15 +33,30 @@ export default async function handler(req: any, res: any) {
       });
    }
 
-   await resend.emails.send({
-      from: 'Joe Fitness <joe@resend.dev>',
+   // NodeMailer transporter using Gmail
+   const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+         user: process.env.EMAIL_USER, // your Gmail
+         pass: process.env.EMAIL_PASS, // App password (not normal password)
+      },
+   });
+
+   const mailOptions = {
+      from: `"Joe Fitness" <${process.env.EMAIL_USER}>`,
       to: cleanEmail,
       subject: '🔥 Your 7-Day Fat Loss Blueprint Is Inside',
       html: `<h1>You're In ${fullName}!</h1>
-           <a href="https://joefitness.live/download/ebook.pdf">
-           Download Now
-           </a>`,
-   });
+             <a href="https://joefitness.live/download/ebook.pdf">
+             Download Now
+             </a>`,
+   };
 
-   return res.status(200).json({ success: true });
+   try {
+      await transporter.sendMail(mailOptions);
+      return res.status(200).json({ success: true });
+   } catch (err: any) {
+      console.error('Email send error:', err);
+      return res.status(500).json({ error: 'Failed to send email' });
+   }
 }

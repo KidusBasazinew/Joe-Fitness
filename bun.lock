@@ -3,6 +3,9 @@
   "workspaces": {
     "": {
       "name": "bunfullstack",
+      "dependencies": {
+        "nodemailer": "^8.0.1",
+      },
       "devDependencies": {
         "@types/bun": "latest",
         "concurrently": "^9.2.1",
