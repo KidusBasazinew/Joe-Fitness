@@ -28,7 +28,7 @@ const Header = () => {
                      <Dumbbell className="h-8 w-8 text-white" />
                   </div>
                   <span className="text-2xl font-bold text-white">
-                     IRON<span className="text-red-600">FORGE</span>
+                     Joe<span className="text-red-600">Fitness</span>
                   </span>
                </div>
 
